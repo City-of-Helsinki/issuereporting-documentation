@@ -1,6 +1,7 @@
 
-<p>The issue reporting API is used by applications for sending service request to City of Helsinki.</p>
-<p>At the moment, the API is mostly used for sending service requests about broken parts of city infrastructure like street signs, potholes, etc. These kinds of service requests are typically handled by <a href="http://www.hel.fi/wps/portal/Rakennusvirasto_en/?">the Public Works Department</a>, but it is increasingly used for other types issues as well.</p>
+<p>The issue reporting API is used by applications for sending service requests to the City of Helsinki.</p>
+
+<p>At the moment, the API is mostly used for sending service requests about broken parts of city infrastructure like street signs, potholes, etc. These kinds of service requests are typically handled by <a href="http://www.hel.fi/wps/portal/Rakennusvirasto_en/?">the Public Works Department</a>. However, the API is increasingly used for other types of feedback as well.</p>
 
 <p>The API enables its clients to:</p>
 
@@ -37,7 +38,7 @@
 
 <h3>Language support</h3>
 
-<p>Finnish and English languages are supported. In practice, this means that the service request types (<a href="#GET Service List">GET Service List</a>) can be queried by those languages.</p>
+<p>Finnish and English are supported. In practice, this means that the service request types (<a href="#GET Service List">GET Service List</a>) can be queried by those languages.</p>
 
 <h2><a id="API Methods" name="API Methods">API Methods</a></h2>
 
@@ -1033,7 +1034,7 @@ in the <a href="http://servicemap.hel.fi/">Helsinki metropolitan area service ma
 
 <h2><a id="Detailed status of service requests" name="Detailed status of service requests">Detailed status of service requests</a> (detailed_status)</h2>
 
-<p>The status of each service request is transferred in status parameter. Status can have only values “open” or “closed”. Parameter detailed_status parameter is comma separated list of detailed status values&nbsp; of the service request.</p>
+<p>The status of each service request is transferred in the status parameter. The parameter can have only values “open” or “closed”. The parameter detailed_status is a comma separated list of the detailed status values of the service request.</p>
 
 <p>The set of detailed status values is:</p>
 
@@ -1047,12 +1048,12 @@ in the <a href="http://servicemap.hel.fi/">Helsinki metropolitan area service ma
 
 If a service request is forwarded to the Public Works Department's Aspa system, its Aspa status is included in the detailed_status parameter. It can have following values:
 <ul>
-  <li>PUBLIC_WORKS_NEW – service request has been received but nothing has been done it.</li>
+  <li>PUBLIC_WORKS_NEW – the service request has been received but nothing has been done to it.</li>
   <li>PUBLIC_WORKS_IN_PROGRESS - the service request is being handled by the Public Works Department.</li>
   <li>PUBLIC_WORKS_COMPLETED - the service request has been resolved.</li>
   <li>PUBLIC_WORKS_COMPLETED_SCHEDULED_LATER - the service request has been resolved and scheduled to be completed later. (coming soon!)</li>
   <li>PUBLIC_WORKS_COMPLETED_REQUIRES_NO_ACTION - the service request requires no action. (coming soon!)</li>
-  <li>PUBLIC_WORKS_INTERRUPTED - the service request has been interrupted and no action has been done. (coming soon!)</li>
+  <li>PUBLIC_WORKS_INTERRUPTED - the service request has been interrupted and no action has been taken. (coming soon!)</li>
 </ul>
  
 Example response:
