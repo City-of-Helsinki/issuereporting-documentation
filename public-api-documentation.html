@@ -1,28 +1,32 @@
 <h2><a id="General" name="General">General</a></h2>
 
-<p>The issue reporting API is used by applications for sending service request to City of Helsinki. At the moment, API is used for sending service requests about broken street signs, potholes, etc, which are typically handled by <a href="http://www.hel.fi/wps/portal/Rakennusvirasto_en/?">the Public Works Department</a>, but the future plan is to use it on other issues as well.</p>
+<p>The issue reporting API is used by applications for sending service request to City of Helsinki.</p>
+<p>At the moment, the API is mostly used for sending service requests about broken parts of city infrastructure like street signs, potholes, etc. These kinds of service requests are typically handled by <a href="http://www.hel.fi/wps/portal/Rakennusvirasto_en/?">the Public Works Department</a>, but it is increasingly used for other types issues as well.</p>
 
-<p>Following functionalities are provided by the API:</p>
+<p>The API enables its clients to:</p>
 
 <ol>
-  <li>Listing of service request types and definitions of the additional attributes</li>
-  <li>Submitting service requests</li>
-  <li>Quering individual or multiple service requests and their descriptions and status</li>
+  <li>Submit new service requests</li>
+  <li>Query individual or multiple service requests and their descriptions and statuses</li>
+  <li>List service request types and definitions of additional attributes</li>
 </ol>
 
-<p>The issue reporting API is based on GeoReporting version 2, which is better known as <a href="http://open311.org">Open311 specification</a>. The interface is designed in such a way that any GeoReporting version 2 compatible client is able to use the interface. This interface is compliant with <a href="http://www.citysdk.eu/">CitySDK</a> specific enhancements to Open311 and parameters specific to it are marked <FONT style="BACKGROUND-COLOR: yellow">CitySDK specific</FONT>.</p>
-<h2><a id="Helsinki specific" name="Helsinki specific">Helsinki specific details</a></h2>
-<h3>Testing and API key</h3>
+<p>The Issue Reporting API is based on GeoReport API version 2, better known as the <a href="http://open311.org">Open311 specification</a>. The interface is designed in such a way that any GeoReport v2 compatible client is able to use the interface. This interface is compliant with <a href="http://www.citysdk.eu/">CitySDK</a> specific enhancements to Open311 and parameters specific to it are marked <FONT style="BACKGROUND-COLOR: yellow">CitySDK specific</FONT>.</p>
 
-<p>Developer applications submitting service request to the feedback system will need API key. All other methods do not require API key.</p>
+<h2><a id="Helsinki specific" name="Helsinki specific">
+  Helsinki specific details</a></h2>
 
-<p>The City of Helsinki has a separate environment and URL for testing developer applications (<a href="http://dev.hel.fi/open311-test/v1/discovery.json">test system</a>) before connecting them to the production system (<strong>https://asiointi.hel.fi/palautews/rest/v1/</strong>). The API key developers use in test environment is different than the one used in production. The standard developer workflow would work like this:</p>
+<h3>API keys and testing</h3>
+
+<p>Client applications submitting new service requests to the feedback system will need an API key. None of the other methods require an API key.</p>
+
+<p>The City of Helsinki has a separate environment and URL for testing developer applications (<a href="http://dev.hel.fi/open311-test/v1/discovery.json">test system</a>) before connecting them to the production system (<strong>https://asiointi.hel.fi/palautews/rest/v1/</strong>). The API key developers use in the test environment is different than the one used in production. The standard developer workflow goes like this:</p>
 
 <ol>
-  <li>Developer requests an API key for the test system</li>
-  <li>Using the test API key, developer codes and tests their app against the test system</li>
-  <li>Developer requests an API key for the production system. After city personnel verifies that the app is according to the API terms, the production API key is given to the developer. Reserve 1-2 weeks time for the verification.</li>
-  <li>Developer's application is deployed using the production system API key and is coded against the production system</li>
+  <li>The developer requests an API key for the test system.</li>
+  <li>Using the test API key, the developer implements and tests their client against the test system.</li>
+  <li>The developer requests an API key for the production system. After city personnel has verified that the client conforms to the API terms, the production API key is created and given to the developer. Reserve 1-2 weeks for the verification.</li>
+  <li>The developer's application is deployed using the production system API key and is tested against the production system.</li>
 </ol>
 
 <p>The use of API is subject to following terms: <a href="http://dev.hel.fi/issuereporting/tos">Terms of Service</a> /  <a href="http://dev.hel.fi/palaute/lisenssijakayttoehdot">Käyttöehdot ja lisenssi</a>.</p>
@@ -30,11 +34,11 @@
 
 <h3>Encoding and formats</h3>
 
-<p>UTF-8 is required everywhere. API supports both XML and JSON.</p>
+<p>UTF-8 is required everywhere. The API supports both XML and JSON.</p>
 
 <h3>Language support</h3>
 
-<p>Finnish and English languages are supported. In practise, the support means that the service request types (<a href="#GET Service List">GET Service Lis</a>t) can be queried by those languages.</p>
+<p>Finnish and English languages are supported. In practice, this means that the service request types (<a href="#GET Service List">GET Service List</a>) can be queried by those languages.</p>
 
 <h2><a id="API Methods" name="API Methods">API Methods</a></h2>
 
@@ -63,7 +67,7 @@
   <tbody>
     <tr>
       <td><strong>locale</strong>
-                         <p><FONT style="BACKGROUND-COLOR: yellow">CitySDK specific</FONT></p></td>
+        <p><FONT style="BACKGROUND-COLOR: yellow">CitySDK specific</FONT></p></td>
       <td>Preferred language</td>
       <td>No</td>
       <td>
@@ -106,7 +110,7 @@
     <tr>
       <td><strong>metadata</strong></td>
       <td>
-      <p>Determines whether their are additional form fields for this service type.</p>
+      <p>Determines whether there are additional form fields for this service type.</p>
       <ul>
         <li>true: This service request type requires additional metadata so the client will need to make a call to the <a href="http://wiki.open311.org/GeoReport_v2.1_Draft#GET_Service_Definition">Service Definition</a> method.</li>
         <li>false: No additional information is required and a call to the <a href="http://wiki.open311.org/GeoReport_v2.1_Draft#GET_Service_Definition">Service Definition</a> method is not needed.</li>
@@ -206,7 +210,7 @@
     </tr>
     <tr>
       <td><strong>locale</strong>
-                        <p><FONT style="BACKGROUND-COLOR: yellow">CitySDK specific</FONT></p></td>
+        <p><FONT style="BACKGROUND-COLOR: yellow">CitySDK specific</FONT></p></td>
       <td>Preferred language</td>
       <td>No</td>
       <td>Locales can be, for example, fi, fi_FI, en, en_GB or en_US. If no locale is given the default value is English.</td>
@@ -262,14 +266,14 @@
     </tr>
       <tr>
       <td>
-      <p><strong>title</strong></p>
-                        <p><FONT style="BACKGROUND-COLOR: yellow">CitySDK specific</FONT></p>
+        <p><strong>title</strong></p>
+        <p><FONT style="BACKGROUND-COLOR: yellow">CitySDK specific</FONT></p>
       </td>
       <td>Title of the service requests</td>
       <td>No</td>
       <td></td>
     </tr>  
-                 <tr>
+    <tr>
       <td><strong>lat</strong></td>
       <td>Latitude using the <a href="http://en.wikipedia.org/wiki/World_Geodetic_System">(WGS84)</a> projection.</td>
       <td>No</td>
@@ -286,7 +290,7 @@
     <tr>
       <td>
       <p><strong>service_object_type</strong></p>
-                        <p><FONT style="BACKGROUND-COLOR: yellow">CitySDK specific</FONT></p>
+      <p><FONT style="BACKGROUND-COLOR: yellow">CitySDK specific</FONT></p>
       </td>
       <td>Describes the point of interest reference which is used for identifying the request object.</td>
       <td>No</td>
@@ -295,7 +299,7 @@
     <tr>
       <td>
       <p><strong>service_object_id</strong></p>
-                        <p><FONT style="BACKGROUND-COLOR: yellow">CitySDK specific</FONT></p>
+      <p><FONT style="BACKGROUND-COLOR: yellow">CitySDK specific</FONT></p>
       </td>
       <td>Describes the point of interest reference which is used for identifying the request object.</td>
       <td>No</td>
@@ -303,7 +307,7 @@
     </tr>
     <tr>
       <td><strong>address_string</strong></td>
-      <td>Human readable address or description of location.</td>
+      <td>Human readable address or description of the location.</td>
       <td>No</td>
       <td>&nbsp;</td>
     </tr>
@@ -311,7 +315,7 @@
       <td><strong>email</strong></td>
       <td>The email address of the person submitting the request</td>
       <td>No</td>
-      <td>If email address is given, service will notify to the email address when service request is processed.</td>
+      <td>If email address is given, service will notify the email address when service request is processed.</td>
     </tr>
     <tr>
       <td><strong>first_name</strong></td>
@@ -342,7 +346,7 @@
       <td>Array of file uploads</td>
       <td>No</td>
       <td>
-      <p>A client may POST multiple files as multipart/form-data. This is the equivalent of having multiple &lt;input type="file" name="media[]" /&gt; inputs. Subsequent calls for GET Service Requests should return the URL for this file via the media_urls field. See more on section <a href="#Uploading media">Uploading media</a>.</p>
+      <p>A client may POST multiple files as multipart/form-data. This is the equivalent of having multiple &lt;input type="file" name="media[]" /&gt; inputs. Subsequent calls for GET Service Requests should return the URL for this file via the media_urls field. See more at section <a href="#Uploading media">Uploading media</a>.</p>
       </td>
     </tr>
   </tbody>
@@ -411,7 +415,7 @@ description=Large+sinkhole+is+destroying+the+street &amp;media_url=http%3A%2F%2F
 
 <h3><a id="GET Service Requests" name="GET Service Requests">GET Service Requests</a></h3>
 
-<p>This method is used for query the current status of multiple requests.</p>
+<p>This method is used to query the current status of multiple requests.</p>
 
 <ul>
   <li>URL: https://[API endpoint]/requests.[format]</li>
@@ -445,13 +449,13 @@ description=Large+sinkhole+is+destroying+the+street &amp;media_url=http%3A%2F%2F
     </tr>
     <tr>
       <td><strong>start_date</strong></td>
-      <td>Earliest requested_datetime to include in search. When provided with end_date, allows one to search for requests which have a requested_datetime that matches a given range, but may not span more than 90 days.</td>
+      <td>Earliest requested_datetime to include in the search. When provided with end_date, allows one to search for requests which have a requested_datetime that matches a given range, but may not span more than 90 days.</td>
       <td>No</td>
       <td>Must use W3C format, e.g 2010-01-01T00:00:00Z.</td>
     </tr>
     <tr>
       <td><strong>end_date</strong></td>
-      <td>Latest requested_datetime to include in search. When provided with start_date, allows one to search for requests which have a requested_datetime that matches a given range, but may not span more than 90 days.</td>
+      <td>Latest requested_datetime to include in the search. When provided with start_date, allows one to search for requests which have a requested_datetime that matches a given range, but may not span more than 90 days.</td>
       <td>No</td>
       <td>Must use W3C format, e.g 2010-01-01T00:00:00Z.</td>
     </tr>
@@ -463,56 +467,56 @@ description=Large+sinkhole+is+destroying+the+street &amp;media_url=http%3A%2F%2F
     </tr>
     <tr>
       <td><strong>extensions</strong>
-                        <p><FONT style="BACKGROUND-COLOR: yellow">CitySDK specific</FONT></p></td>
+        <p><FONT style="BACKGROUND-COLOR: yellow">CitySDK specific</FONT></p></td>
       <td>The endpoint provides supplemental details about service requests that are in addition to the ones described in the standard specification. These data are nested in the 'extended_attributes' parameter in the Service Request response. In order to retrieve the new supplemental details, add the query parameter “extensions=true” to the request</td>
       <td>No</td>
       <td>See chapter on <a href="#Extensions">Extensions</a>.</td>
     </tr>
     <tr>
       <td><strong>service_object_type</strong>
-                        <p><FONT style="BACKGROUND-COLOR: yellow">CitySDK specific</FONT></p></td>
+        <p><FONT style="BACKGROUND-COLOR: yellow">CitySDK specific</FONT></p></td>
       <td>Describes the point of interest reference which is used for identifying the request object.</td>
       <td>No</td>
       <td>See chapter on <a href="#Service Objects">Service Objects</a>.</td>
     </tr>
     <tr>
       <td><strong>service_object_id</strong>
-                        <p><FONT style="BACKGROUND-COLOR: yellow">CitySDK specific</FONT></p></td>
+        <p><FONT style="BACKGROUND-COLOR: yellow">CitySDK specific</FONT></p></td>
       <td>Describes the ID of the service object</td>
       <td>No</td>
       <td>If service_object_id is included in the request, then service_object_type must be included.</td>
     </tr>
     <tr>
       <td><strong>lat</strong>
-                        <p><FONT style="BACKGROUND-COLOR: yellow">CitySDK specific</FONT></p></td>
+        <p><FONT style="BACKGROUND-COLOR: yellow">CitySDK specific</FONT></p></td>
       <td>Latitude</td>
       <td>No</td>
       <td>Location based search if lat, long and radius are given.</td>
     </tr>
     <tr>
       <td><strong>long</strong>
-                        <p><FONT style="BACKGROUND-COLOR: yellow">CitySDK specific</FONT></p></td>
+        <p><FONT style="BACKGROUND-COLOR: yellow">CitySDK specific</FONT></p></td>
       <td>Longitude</td>
       <td>No</td>
       <td>Location based search if lat, long and radius are given.</td>
     </tr>
     <tr>
       <td><strong>radius</strong>
-                        <p><FONT style="BACKGROUND-COLOR: yellow">CitySDK specific</FONT></p></td>
+        <p><FONT style="BACKGROUND-COLOR: yellow">CitySDK specific</FONT></p></td>
       <td>Radius (meters) in which location based search performed.</td>
       <td>No</td>
       <td>Location based search if lat, long and radius are given.</td>
     </tr>
-                <tr>
+    <tr>
       <td><strong>updated_after</strong>
-                        <p><FONT style="BACKGROUND-COLOR: yellow">CitySDK specific</FONT></p></td>
+        <p><FONT style="BACKGROUND-COLOR: yellow">CitySDK specific</FONT></p></td>
       <td>Earliest updated_datetime to include in search. Allows one to search for requests which have an updated_datetime between the updated_after time and updated_before time (or now). This is useful for downloading a changeset that includes changes to older requests or to just query very recent changes.</td>
       <td>No</td>
       <td>Must use w3 format, eg 2010-01-01T00:00:00Z.</td>
     </tr>
 <tr>
       <td><strong>updated_before</strong>
-                        <p><FONT style="BACKGROUND-COLOR: yellow">CitySDK specific</FONT></p></td>
+        <p><FONT style="BACKGROUND-COLOR: yellow">CitySDK specific</FONT></p></td>
       <td>Latest updated_datetime to include in search. Allows one to search for requests which have an updated_datetime between the updated_after time and the updated_before time. This is useful for downloading a changeset that includes changes to older requests or to just query very recent changes. </td>
       <td>No</td>
       <td>When not specified (updated_after is used without updated_before) then updated_before is assumed to be now. Must use w3 format, eg 2010-01-01T00:00:00Z.</td>
@@ -541,7 +545,7 @@ description=Large+sinkhole+is+destroying+the+street &amp;media_url=http%3A%2F%2F
     <tr>
       <td><strong>status_notes</strong></td>
       <td>
-      <p>Explanation of why status was changed to current state or more details on current status than conveyed with status alone</p>
+      <p>Explanation of why the status was changed to the current state or more details on the current status than is conveyed with status alone</p>
       </td>
       <td>Yes</td>
       <td>&nbsp;</td>
@@ -632,31 +636,31 @@ description=Large+sinkhole+is+destroying+the+street &amp;media_url=http%3A%2F%2F
     </tr>
     <tr>
       <td><strong>service_object_type</strong>
-                        <p><FONT style="BACKGROUND-COLOR: yellow">CitySDK specific</FONT></td>
+        <p><FONT style="BACKGROUND-COLOR: yellow">CitySDK specific</FONT></td>
       <td>
-      <p>Nested in extended_attributes field (extended_attributes.service_object_type). Describes the point of interest reference which is used for identifying the request object.</p>
+      <p>Nested inside the extended_attributes field (extended_attributes.service_object_type). Describes the point of interest reference which is used for identifying the request object.</p>
       </td>
       <td>No</td>
       <td>See chapter on <a href="#Service Objects">Service Objects. </a></td>
     </tr>
     <tr>
       <td><strong>service_object_id</strong>
-                        <p><FONT style="BACKGROUND-COLOR: yellow">CitySDK specific</FONT></td>
-      <td>Nested in extended_attributes field (extended_attributes service_object_id). Describes the ID of the service object.</td>
+        <p><FONT style="BACKGROUND-COLOR: yellow">CitySDK specific</FONT></td>
+      <td>Nested inside the extended_attributes field (extended_attributes.service_object_id). Describes the ID of the service object.</td>
       <td>No</td>
       <td>If service_object_id is included in the request, then service_object_type must be included.</td>
     </tr>
     <tr>
       <td><strong>detailed_status</strong>
-                        <p><FONT style="BACKGROUND-COLOR: yellow">CitySDK specific</FONT></td>
-      <td>Nested in extended_attributes field (extended_attributes.detailed_status) describes detailed.</td>
+        <p><FONT style="BACKGROUND-COLOR: yellow">CitySDK specific</FONT></td>
+      <td>Nested inside the extended_attributes field (extended_attributes.detailed_status). Describes the detailed status of the service request.</td>
       <td>No</td>
       <td>This can contain multiple status values; comma delimited. See more on section <a href="#Detailed status of service requests">Detailed status of service requests</a>.</td>
     </tr>
-                <tr>
+    <tr>
       <td><strong>media_urls</strong>
-                        <p><FONT style="BACKGROUND-COLOR: yellow">CitySDK specific</FONT></td>
-      <td>Nested in extended_attributes field (extended_attributes.media_urls) contains URLs to media associated with the request.</td>
+        <p><FONT style="BACKGROUND-COLOR: yellow">CitySDK specific</FONT></td>
+      <td>Nested inside the extended_attributes field (extended_attributes.media_urls). Contains URLs to media associated with the request.</td>
       <td>No</td>
       <td>The values is array of strings.</td>
     </tr>
@@ -665,7 +669,7 @@ description=Large+sinkhole+is+destroying+the+street &amp;media_url=http%3A%2F%2F
 
 <p><strong>Response Volume</strong></p>
 
-<p>Default query limit is a span of 90 days or first 200 requests returned, whichever is smallest.</p>
+<p>The default query limit is a span of 90 days or first 200 requests returned, whichever is smallest.</p>
 
 <p><strong>Possible errors</strong></p>
 
@@ -727,7 +731,7 @@ description=Large+sinkhole+is+destroying+the+street &amp;media_url=http%3A%2F%2F
 
 <h3><a id="GET Service Request" name="GET Service Request">GET Service Request</a></h3>
 
-<p>This method is used for query the current status of multiple requests.</p>
+<p>This method is used to query the current status of multiple requests.</p>
 
 <ul>
   <li>URL: https://asiointi.hel.fi/palautews/rest/v1/requests/[service_request_id].[format]</li>
@@ -755,11 +759,11 @@ description=Large+sinkhole+is+destroying+the+street &amp;media_url=http%3A%2F%2F
     </tr>
     <tr>
       <td><strong>extensions</strong>
-                        <p><FONT style="BACKGROUND-COLOR: yellow">CitySDK specific</FONT></td>
-      <td>Helsinki endpoint provides supplemental details about service requests that are in addition to the ones described in the Open311 specification. These data are nested in the 'extended_attributes' field in the response. In order to retrieve the new supplemental details, add the query parameter “extensions=true” to any request. See more in </td>
+        <p><FONT style="BACKGROUND-COLOR: yellow">CitySDK specific</FONT></td>
+      <td>Helsinki endpoint provides supplemental details about service requests that are in addition to the ones described in the Open311 specification. These data are nested in the 'extended_attributes' field in the response. In order to retrieve the new supplemental details, add the query parameter “extensions=true” to any request.</td>
       <td>No</td>
       <td>
-      <p>Options: <strong>true</strong>, <strong>false</strong>. Defaults to false. See more on <a href="#Extensions">Extensions</a> chapter.</p>
+      <p>Options: <strong>true</strong>, <strong>false</strong>. Defaults to false. See more at the <a href="#Extensions">Extensions</a> chapter.</p>
       </td>
     </tr>
   </tbody>
@@ -785,7 +789,7 @@ description=Large+sinkhole+is+destroying+the+street &amp;media_url=http%3A%2F%2F
     </tr>
     <tr>
       <td><strong>status_notes</strong></td>
-      <td>Explanation of why status was changed to current state or more details on current status than conveyed with status alone.</td>
+      <td>Explanation of why the status was changed to the current state or more details on the current status than conveyed with status alone.</td>
       <td>Yes</td>
       <td>&nbsp;</td>
     </tr>
@@ -842,13 +846,13 @@ description=Large+sinkhole+is+destroying+the+street &amp;media_url=http%3A%2F%2F
       <td><strong>updated_datetime</strong></td>
       <td>The date and time when the service request was last modified. For requests with status=closed, this will be the date the request was closed.</td>
       <td>Yes</td>
-      <td>Must use W3C format, e.g 2010-01-01T00:00:00Z.</td>
+      <td>Must use the W3C format, e.g 2010-01-01T00:00:00Z.</td>
     </tr>
     <tr>
       <td><strong>expected_datetime</strong></td>
       <td>The date and time when the service request can be expected to be fulfilled. This may be based on a service-specific service level agreement.</td>
       <td>No</td>
-      <td>Not available. Must use W3C format, e.g 2010-01-01T00:00:00Z.</td>
+      <td>Not available. Must use the W3C format, e.g 2010-01-01T00:00:00Z.</td>
     </tr>
     <tr>
       <td><strong>address</strong></td>
@@ -870,21 +874,21 @@ description=Large+sinkhole+is+destroying+the+street &amp;media_url=http%3A%2F%2F
     </tr>
     <tr>
       <td><strong>media_url</strong></td>
-      <td>A URL to media associated with the request, eg an image.</td>
+      <td>A URL to media associated with the request, for example an image.</td>
       <td>No</td>
       <td>May contain more than one of these elements. <a href="http://dev.hel.fi/?q=node/34">This feature is coming soon.</a></td>
     </tr>
     <tr>
       <td><strong>service_object_type</strong>
-                        <p><FONT style="BACKGROUND-COLOR: yellow">CitySDK specific</FONT></td>
-      <td><p>Nested in extended_attributes field (extended_attributes.service_object_type). Describes the point of interest reference which is used for identifying the request object.</td>
+        <p><FONT style="BACKGROUND-COLOR: yellow">CitySDK specific</FONT></td>
+      <td><p>Nested inside the extended_attributes field (extended_attributes.service_object_type). Describes the point of interest reference which is used for identifying the request object.</td>
       <td>No</td>
       <td>See chapter on <a href="#Service Objects">Service Objects. </a></td>
     </tr>
     <tr>
       <td><strong>service_object_id</strong>
-                        <p><FONT style="BACKGROUND-COLOR: yellow">CitySDK specific</FONT></td>
-      <td>Nested in extended_attributes field (extended_attributes.service_object_id) describes the ID of the object e.g. public toiled in Helsinki Esplanade park&nbsp; ID = 10844.</td>
+        <p><FONT style="BACKGROUND-COLOR: yellow">CitySDK specific</FONT></td>
+      <td>Nested inside the extended_attributes field (extended_attributes.service_object_id) describes the ID of the object e.g. public toiled in Helsinki Esplanade park&nbsp; ID = 10844.</td>
       <td>No</td>
       <td>
       <p>If service_object_id is included, then service_object_type must be also included. See chapter on <a href="#Service Objects">Service Objects.</a></p>
@@ -892,17 +896,17 @@ description=Large+sinkhole+is+destroying+the+street &amp;media_url=http%3A%2F%2F
     </tr>
     <tr>
       <td><strong>detailed_status</strong>
-                       <p><FONT style="BACKGROUND-COLOR: yellow">CitySDK specific</FONT></td>
+        <p><FONT style="BACKGROUND-COLOR: yellow">CitySDK specific</FONT></td>
       <td>Nested in extended_attributes parameters (extended_attributes. detailed_status) describes detailed status of the service request.</td>
       <td>No</td>
       <td>This can contain multiple status values; comma delimited. See more on <a href="#Detailed status of service requests">Detailed status of service requests</a> chapter</td>
     </tr>
-                <tr>
+    <tr>
       <td><strong>media_urls</strong>
-                        <p><FONT style="BACKGROUND-COLOR: yellow">CitySDK specific</FONT></td>
-      <td>Nested in extended_attributes field (extended_attributes.media_urls) contains URLs to media associated with the request.</td>
+        <p><FONT style="BACKGROUND-COLOR: yellow">CitySDK specific</FONT></td>
+      <td>Nested inside the extended_attributes field (extended_attributes.media_urls). Contains URLs to media associated with the request.</td>
       <td>No</td>
-      <td>The values is array of strings.</td>
+      <td>The values is an array of strings.</td>
     </tr>
   </tbody>
 </table>
@@ -962,7 +966,7 @@ description=Large+sinkhole+is+destroying+the+street &amp;media_url=http%3A%2F%2F
     </tr>
     <tr>
       <td><strong>description</strong></td>
-      <td>A human readable description of the error that occurred. This is meant to be seen by the user.</td>
+      <td>A human readable description of the error that occurred. This is meant to be seen by the end user.</td>
       <td>Yes</td>
       <td>&nbsp;</td>
     </tr>
@@ -990,11 +994,15 @@ description=Large+sinkhole+is+destroying+the+street &amp;media_url=http%3A%2F%2F
 </pre>
 
 <h2><a id="Moderation of Service Requests" name="Moderation of Service Requests">Moderation of Service Requests</a></h2>
-<p>When a service request is posted to city's issue reporting system, it is not automatically shown publicly in the search results. Each service request is moderated and only when it is published, the service request is visible in the search results.</p><p>Before the service request is moderated, the service request details are visible and can be queried by using the service_request_id.</p>
+
+<p>When a service request is posted to the city's issue reporting system, it is not yet shown publicly in the API's service request listings. Each service request is pre-moderated and only after publishing is the service request visible through the API's listing views.</p>
+
+<p>Before the service request is moderated, the service request details are visible and can be queried by using the service_request_id.</p>
 
 <h2><a id="Service Objects" name="Service Objects">Service Objects</a> (service_object_type, service_object_id)</h2>
 
-<p>Service request may contain reference to <a href="http://www.hel.fi/palvelukartta/">Helsinki metropolitan area service map</a> unit, i.e. service object. Service object is typically a unit item from the service map.</p>
+<p>A service request may contain a reference to a service point using the field service_object_id. These represent service points 
+in the <a href="http://servicemap.hel.fi/">Helsinki metropolitan area service map</a>.</p>
 
 <p>Public toilet in Helsinki service map:</p>
 
@@ -1004,12 +1012,14 @@ description=Large+sinkhole+is+destroying+the+street &amp;media_url=http%3A%2F%2F
 </ul>
 
 <h2><a id="Extensions" name="Extensions">Extensions</a> (extended_attributes)</h2>
+
 <p>A set of Helsinki specific extensions are carried nested inside extended_attributes parameter. In order to retrieve the new extended attributes in the response, add the query parameter “extensions=true” to the request. The list of parameters are:</p>
+
 <ul>
   <li><strong>title</strong>, feedback system's human readable title for the service request. The value is same as the title parameter given in <a href="http://dev.hel.fi/apis/issuereporting#POST Service Request">POST Service Request</a> or if not present the title is shortened from description text.</li>
   <li><strong>service_object_id</strong>, see more on <a href="#Service Objects">Service Objects</a> chapter.</li>
   <li><strong>service_object_type</strong>, see more on <a href="#Service Objects">Service Objects</a> chapter.</li>
-       <li><strong>detailed_status</strong>, see more on <a href="#Detailed status of service requests">Detailed status of service requests</a> chapter.</li>
+  <li><strong>detailed_status</strong>, see more at the <a href="#Detailed status of service requests">Detailed status of service requests</a> chapter.</li>
 </ul>
 <p><strong><Example</strong></p>
 <pre class="brush: js">
@@ -1026,24 +1036,24 @@ description=Large+sinkhole+is+destroying+the+street &amp;media_url=http%3A%2F%2F
 
 <p>The status of each service request is transferred in status parameter. Status can have only values “open” or “closed”. Parameter detailed_status parameter is comma separated list of detailed status values&nbsp; of the service request.</p>
 
-<p>For interoperability purpose set of detailed status values are specified:</p>
+<p>The set of detailed status values is:</p>
 
 <ul>
-  <li>RECEIVED – service request is received but nothing is done it. Status field value is open.</li>
-  <li>IN_PROCESS - service request is received and its handling has been started. Status field value is open.</li>
-  <li>PROCESSED - service request has been resolved. Status field value is closed.</li>
-  <li>ARCHIVED - service request has been resolved and archived. Status field value is closed. (Not used in Helsinki)</li>
-  <li>REJECTED -service request has been rejected. Status field value is closed. (Not used in Helsinki)</li>
+  <li>RECEIVED – the service request has been received but nothing has been done it. The value of the status field is "open".</li>
+  <li>IN_PROCESS - the service request has been received and its handling has been started. The value of the status field is "open".</li>
+  <li>PROCESSED - the service request has been resolved. The value of the status field is "closed".</li>
+  <li>ARCHIVED - the service request has been resolved and archived. The value of the status field is "closed". (Not used in Helsinki)</li>
+  <li>REJECTED - the service request has been rejected. The value of the status field is "closed". (Not used in Helsinki)</li>
 </ul>
 
-If a service request is forwarded to Public Works department's Aspa system, its Aspa status is included in the detailed_status parameter. It can have following values:
+If a service request is forwarded to the Public Works Department's Aspa system, its Aspa status is included in the detailed_status parameter. It can have following values:
 <ul>
-  <li>PUBLIC_WORKS_NEW – service request is received but nothing is done it.</li>
-  <li>PUBLIC_WORKS_IN_PROGRESS - service request is been handled by Public Works department.</li>
-  <li>PUBLIC_WORKS_COMPLETED- service request has been resolved. </li>
-        <li>PUBLIC_WORKS_COMPLETED_SCHEDULED_LATER- service request has been resolved and done later. (coming soon!)</li>
-        <li>PUBLIC_WORKS_COMPLETED_REQUIRES_NO_ACTION- service request requires no action. (coming soon!)</li>
-        <li>PUBLIC_WORKS_INTERRUPTED- service request interrupted and no action done. (coming soon!)</li>
+  <li>PUBLIC_WORKS_NEW – service request has been received but nothing has been done it.</li>
+  <li>PUBLIC_WORKS_IN_PROGRESS - the service request is being handled by the Public Works Department.</li>
+  <li>PUBLIC_WORKS_COMPLETED - the service request has been resolved.</li>
+  <li>PUBLIC_WORKS_COMPLETED_SCHEDULED_LATER - the service request has been resolved and scheduled to be completed later. (coming soon!)</li>
+  <li>PUBLIC_WORKS_COMPLETED_REQUIRES_NO_ACTION - the service request requires no action. (coming soon!)</li>
+  <li>PUBLIC_WORKS_INTERRUPTED - the service request has been interrupted and no action has been done. (coming soon!)</li>
 </ul>
  
 Example response:
@@ -1056,9 +1066,9 @@ Example response:
 
 <h2><a id="Uploading media" name="Uploading media">Uploading media</a></h2>
 
-Uploading of media files like images is supported two ways. POST Service Request can reference to image with media_url parameter or media can be uploaded directly as multipart/form-data. 
+Uploading of media files like images is supported in two ways. POSTing a Service Request can reference an image with the media_url parameter or a media file can be uploaded directly as multipart/form-data. 
 
-More than one image is supported. If applications send more than one image, special care should be taken on the application side, because of the long upload time. It is also possible to upload using media_url reference and directly multipart/form-data in one shot.
+More than one image is supported. If applications send more than one image, special care should be taken on the application side because of the long upload time. It is also possible to upload using the media_url reference and directly multipart/form-data in one shot.
 
 <p><strong>Example of uploading image as multipart/form-data</strong></p>
 
@@ -1123,7 +1133,7 @@ Content-Transfer-Encoding: binary
 ]
 </pre>
 
-<h2><a id="Applications using API" name="Applications using API">Applications using API</a></h2>
+<h2><a id="Applications using API" name="Applications using API">Applications using the API</a></h2>
 
 These applications use the API already:
 <ul>
@@ -1132,9 +1142,9 @@ These applications use the API already:
   <li><a href="https://fi.nearhood.net/">Nearhood</a> -paikallisuutispalvelu</li>
   <li><a href="https://itunes.apple.com/us/app/georeporter/id487304759">GeoReporter</a> iPhone Application</li>
   <li>Mobile Trouble Shooter <a href="http://www.windowsphone.com/en-us/store/app/mts/d941bf31-f5b6-4bb1-bf06-a27b1987bbea">Windows</a> and <a href="https://play.google.com/store/apps/details?id=com.smarts.pta&hl=en">Android</a> phone applications</li>
-        <li><a href="http://fisuverkko.fi">Fisuverkko</a> - Kalasatama neighborhood website</li>
-        <li><a href="http://helppoliikkua.fi/i">Helppo liikkua</a> - accessibility website</li>
+  <li><a href="http://fisuverkko.fi">Fisuverkko</a> - Kalasatama neighborhood website</li>
+  <li><a href="http://helppoliikkua.fi/i">Helppo liikkua</a> - accessibility website</li>
 </ul>
 <h2><a id="FAQ" name="FAQ">Frequently asked questions</a></h2>
 
-Frequently asked question FAQ is <a href="http://dev.hel.fi/node/82">here</a>.
+<a href="http://dev.hel.fi/node/82">Answers to Frequently Asked Questions</a>
